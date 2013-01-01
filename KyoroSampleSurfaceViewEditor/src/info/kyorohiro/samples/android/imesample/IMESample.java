@@ -6,12 +6,17 @@ import android.inputmethodservice.InputMethodService;
 import android.view.inputmethod.InputConnection;
 
 public class IMESample extends InputMethodService {
-	public static WeakReference<IMESample> mWInstance = null;
+	public static WeakReference<IMESample> mWInstance = new WeakReference<IMESample>(null);
 
 	public IMESample() {
+    	android.util.Log.v("kiyo","call IMESample");
 		mWInstance = new WeakReference<IMESample>(this);
 	}
 
+	public static IMESample getInstance() 
+	{
+		return mWInstance.get();
+	}
 	// 
 	// newCursorPosition : when JP, you set 1. 
 	//
@@ -48,5 +53,12 @@ public class IMESample extends InputMethodService {
 	}
 
 
+	//
+	//
+	//
+    @Override public void onInitializeInterface() {
+    	android.util.Log.v("kiyo","call onInitializeInterface()");
+    	super.onInitializeInterface();
+    }
 
 }

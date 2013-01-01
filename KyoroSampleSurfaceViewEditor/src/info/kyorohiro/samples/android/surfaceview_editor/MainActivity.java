@@ -9,6 +9,10 @@ public class MainActivity extends Activity {
 
 	private Editor mViewer = null;
 
+	public Editor getEditor() {
+		return mViewer;
+	}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
