@@ -32,6 +32,7 @@ public class EditableSurfaceView extends SurfaceView {
 	private IMEController mController = new IMEController();
 	private boolean mIMEIsShow = false;
 	private static CharSequence mComposingText = null;
+	private static int mNewCursorPosition = 0;
 	private static CharSequence mCommitText = null;
 	private static LinkedList<CommitText> mCommitTextList = new LinkedList<CommitText>();
 
@@ -211,7 +212,7 @@ public class EditableSurfaceView extends SurfaceView {
 			// for asus fskaren 
 			{
 				if(mComposingText != null&&mComposingText.length() != 0) {
-					addCommitText(new CommitText(mComposingText, 1));
+					addCommitText(new CommitText(mComposingText, mNewCursorPosition));
 					mComposingText = "";
 				}
 			}
@@ -232,6 +233,7 @@ public class EditableSurfaceView extends SurfaceView {
 		public boolean setComposingText(CharSequence text, int newCursorPosition) {
 			log("setComposingText="+text+","+newCursorPosition);
 			mComposingText = text;
+			mNewCursorPosition = newCursorPosition;
 			return super.setComposingText(text, newCursorPosition);
 		}
 

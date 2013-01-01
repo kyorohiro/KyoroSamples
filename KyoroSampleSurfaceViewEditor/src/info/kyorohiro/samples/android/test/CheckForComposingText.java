@@ -84,5 +84,29 @@ public class CheckForComposingText extends
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+
+		//
+		// setComposingText
+		//
+    	android.util.Log.v("kiyo","senario:kick inputComposingText");
+		ime = IMESample.getInstance();
+		ime.inputComposingText("おなかがすいた", 1);
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+		//
+		// setComposingText
+		//
+    	android.util.Log.v("kiyo","senario:kick inputComposingText");
+		ime = IMESample.getInstance();
+		ime.finishComposingText();
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 }

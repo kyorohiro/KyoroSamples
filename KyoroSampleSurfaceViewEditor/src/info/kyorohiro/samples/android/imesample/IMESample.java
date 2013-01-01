@@ -53,6 +53,22 @@ public class IMESample extends InputMethodService {
 	}
 
 
+	// 
+	// newCursorPosition : when JP, you set 1. 
+	//
+	public void finishComposingText() {
+		IMESample instance = mWInstance.get();
+		if(instance == null) {
+			return;
+		}
+
+		InputConnection input = instance.getCurrentInputConnection();
+		if(input == null) {
+			return;
+		}
+
+		input.finishComposingText();
+	}
 	//
 	//
 	//
