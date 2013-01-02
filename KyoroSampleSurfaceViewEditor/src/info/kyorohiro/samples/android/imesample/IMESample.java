@@ -6,6 +6,9 @@ import android.inputmethodservice.InputMethodService;
 import android.view.KeyEvent;
 import android.view.inputmethod.InputConnection;
 
+//
+// This class is used in TestCase 
+//
 public class IMESample extends InputMethodService {
 	public static WeakReference<IMESample> mWInstance = new WeakReference<IMESample>(
 			null);
