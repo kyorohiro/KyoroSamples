@@ -100,7 +100,7 @@ public class CheckForComposingText extends
 		//
 		// setComposingText
 		//
-    	android.util.Log.v("kiyo","senario:kick inputComposingText");
+    	android.util.Log.v("kiyo","senario:kick finishComposingText");
 		ime = IMESample.getInstance();
 		ime.finishComposingText();
 		try {
