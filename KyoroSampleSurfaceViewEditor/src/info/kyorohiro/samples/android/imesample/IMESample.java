@@ -95,4 +95,15 @@ public class IMESample extends InputMethodService {
 		super.onInitializeInterface();
 	}
 
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		android.util.Log.v("kiyo", "call onKeyDown() keycode="+keyCode +",event="+event);
+		return super.onKeyDown(keyCode, event);
+	}
+
+	@Override
+	public boolean onKeyUp(int keyCode, KeyEvent event) {
+		android.util.Log.v("kiyo", "call onKeyUp() keycode="+keyCode +",event="+event);
+		return super.onKeyUp(keyCode, event);
+	}
 }

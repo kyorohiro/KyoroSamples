@@ -36,8 +36,8 @@ public class EditableSurfaceView extends SurfaceView {
 	private static CharSequence mCommitText = null;
 	private static LinkedList<CommitText> mCommitTextList = new LinkedList<CommitText>();
 
-
-	//
+	public synchronized void resetTimer() {
+	}	//
 	// Begin Utility
 	//
 	public static boolean pushingCtl(KeyEvent event) {
@@ -120,7 +120,8 @@ public class EditableSurfaceView extends SurfaceView {
 
 	@Override
 	public boolean dispatchKeyEvent(KeyEvent event) {
-		log("dispatchKeyEvent"+event.getKeyCode()+","+event.toString());
+		log("dispatchKeyEvent"+event.getKeyCode()+","+event.toString()+","+event.getScanCode());
+
 		if(event.getKeyCode() == KeyEvent.KEYCODE_BACK||event.getKeyCode() == KeyEvent.KEYCODE_MENU
 			||event.getKeyCode() == KeyEvent.KEYCODE_VOLUME_DOWN||event.getKeyCode() == KeyEvent.KEYCODE_VOLUME_UP) {
 			return super.dispatchKeyEvent(event);
@@ -187,6 +188,8 @@ public class EditableSurfaceView extends SurfaceView {
 		}
 		
 		public CommitText popFirst() {
+			//EditableSurfaceView.this.
+			resetTimer();//resetTimer();
 			if(0<mCommitTextList.size()){
 			return mCommitTextList.removeFirst();
 			}
