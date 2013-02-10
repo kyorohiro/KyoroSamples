@@ -1,4 +1,6 @@
-﻿課題 カバレッジをはかりたい!!
+﻿
+[課題] カバレッジを計測したい!!
+
 
 基本、アプリ作成する時は、ユニットテストを書きながら、コードを書いていきます。
 動作確認しながらコードが書けるので作業がはかどります。
@@ -50,7 +52,6 @@
  今回はそのまま、Androidに含まれている機能を使用することにしました。
  ※ 実現方法とかは機会があれば解説したいです。今回はしません。
 
-
  1. antからビルドできるようにする。
   ---> cd {ターゲットのprojectがある場所}
   ---> android.bat update project --path .
@@ -64,11 +65,22 @@
   ---> cd {ターゲットの test projectがある場所}
   ---> ant emma debug install test
 
-後は結果がでます。
-[成果物]
 
+後は結果がでます。
+
+
+[成果物]
+#サンプルのコードを書きました。
+https://github.com/kyorohiro/KyoroSamples/tree/master/EmmaSample
+ - runtest.sh
+   テスト実施します。
+ - createbuildxml.sh
+   ビルド環境を作ります。
+
+#以下のような、Coverageの結果が出力されます。
+https://github.com/kyorohiro/KyoroSamples/tree/master/EmmaSample/tests/bin
 
 [参考]
 http://d.hatena.ne.jp/halts/20120201/p1
 http://blog.pboos.ch/post/35269158339/android-coverage-report-for-unit-tests
-終わり
+
