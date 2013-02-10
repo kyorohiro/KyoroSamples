@@ -1,0 +1,20 @@
+[EMMA v2.0.5312 report, generated Mon Feb 11 02:12:45 JST 2013]
+-------------------------------------------------------------------------------
+OVERALL COVERAGE SUMMARY:
+
+[class, %]	[method, %]	[block, %]	[line, %]	[name]
+100% (1/1)	67%  (2/3)!	59%  (10/17)!	67%  (4/6)!	all classes
+
+OVERALL STATS SUMMARY:
+
+total packages:	1
+total classes:	1
+total methods:	3
+total executable files:	1
+total executable lines:	6
+
+COVERAGE BREAKDOWN BY PACKAGE:
+
+[class, %]	[method, %]	[block, %]	[line, %]	[name]
+100% (1/1)	67%  (2/3)!	59%  (10/17)!	67%  (4/6)!	info.kyorohiro.samples.android.emma
+-------------------------------------------------------------------------------
