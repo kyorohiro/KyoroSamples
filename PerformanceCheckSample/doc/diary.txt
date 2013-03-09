@@ -1,0 +1,82 @@
+[EstevaX 作業日記]
+ KyoroTextのコードはすべて捨てることにしました。 新たに作り直します。
+  メタファはEstevaです。  AESTIVALISを誤記した結果、Estevaになりました。
+  # Just In Time に、情報を表示すること
+  # AESTIVALIS / AESTIVALISが出てきた世界のコンソールみたいに、直感的に扱えること
+   を目標とします。
+
+[準備]
+ KyoroTextの反省として、パフォーマンスの問題がありました。 ちょっとした修正が、大きくパフォーマンスに影響する場合がありました。
+  なので、今回は開発を開始したタイミングでこの問題に対象したい。
+
+ EstevaXでは、 以下の方法を試してみることしました。
+ -A. Instrumentation#setAutomaticPerformanceSnapshots()
+ -B. Aでしている事を、別の方法で実現する。
+ -C. cpuの使用率を計測する。
+ 
+ Aは「Android Application Testing Guide」　で紹介された方法です。(http://dtmilano.blogspot.jp/)
+ cpuの処理時間を元に計測できるので、より良い的なことがかかれいました。
+ 
+ Bは、直接必要なAPIをたたけば良いのではないか？と考えるにいたり、「PerformanceCollector(Androidのソース)」から
+ APIの使い方を流用することを思いつきまた。
+ 
+ Cは、「TOPコマンドをたたくだけで良いかな」と考えています。
+ 
+ [A. Instrumentation#setAutomaticPerformanceSnapshots()]
+  Instrumentation#setAutomaticPerformanceSnapshots()　を コールすると、Instrumentationが終了時に、
+      以下のような素敵ログをはいてくれます。
+     このうち、cpu_time execution_time に着目して、実際にプロセスが使用した時間を取得できる。
+INSTRUMENTATION_RESULT: other_pss=3969
+INSTRUMENTATION_RESULT: java_allocated=6146
+INSTRUMENTATION_RESULT: global_freed_size=20128
+INSTRUMENTATION_RESULT: native_private_dirty=16
+INSTRUMENTATION_RESULT: native_free=132
+INSTRUMENTATION_RESULT: global_alloc_count=1475
+INSTRUMENTATION_RESULT: other_private_dirty=2880
+INSTRUMENTATION_RESULT: global_freed_count=344
+INSTRUMENTATION_RESULT: sent_transactions=-1
+INSTRUMENTATION_RESULT: java_free=193
+INSTRUMENTATION_RESULT: received_transactions=-1
+INSTRUMENTATION_RESULT: pre_sent_transactions=-1
+INSTRUMENTATION_RESULT: other_shared_dirty=2604
+INSTRUMENTATION_RESULT: pre_received_transactions=-1
+INSTRUMENTATION_RESULT: execution_time=5230398
+INSTRUMENTATION_RESULT: native_size=2912
+INSTRUMENTATION_RESULT: native_shared_dirty=24
+INSTRUMENTATION_RESULT: cpu_time=317
+INSTRUMENTATION_RESULT: java_private_dirty=1396
+INSTRUMENTATION_RESULT: native_allocated=2779
+INSTRUMENTATION_RESULT: gc_invocation_count=0
+INSTRUMENTATION_RESULT: java_shared_dirty=8796
+INSTRUMENTATION_RESULT: global_alloc_size=91221
+INSTRUMENTATION_RESULT: java_pss=1685
+INSTRUMENTATION_RESULT: java_size=6339
+INSTRUMENTATION_RESULT: native_pss=16
+INSTRUMENTATION_CODE: -1
+
+ ためしに 私が書いたコードは、以下のところに起きました。
+https://github.com/kyorohiro/KyoroSamples/tree/master/InstrumentationSample
+adb shell am instrument -w .kyorohiro.samples.android.instrumentation/info.kyorohiro.samples.android.instrumentation.MyInstrumentation
+で動作します。
+
+
+[-B. Aでしている事を、別の方法で実現する。]
+ Bは使い勝手が悪いです。 instrumentationの動作が完了するまで結果が見ません。
+  なので、別の方法をとりました。
+ Androidの該当するコード(PerformanceCollector)を呼んでみると、対応するAPIは公開されていることがわかります。
+  具体的には、SystemClock.uptimeMillis()　と、 Process.getElapsedCpuTime() です。
+  直接このメソッドをコールすれば、プロセスがCPUの使用している時間だけをとることができます。
+  かなり便利です。そして簡単です。
+
+ ためしに 私が書いたコードは、以下のところに起きました。
+ https://github.com/kyorohiro/KyoroSamples/tree/master/PerformanceCheckSample
+ Aの場合と同等の結果を任意のタイミングで返すことができます。
+ 
+ [予定]
+       当面は、 Process.getElapsedCpuTime()を使用してパフォーマンスを測定するテストコードを書くことにしました。
+      何か問題がこれでいこうと考えています。
+
+
+
+
+ 、

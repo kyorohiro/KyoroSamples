@@ -99,24 +99,22 @@ public class PerformanceCheck {
 
 	public void infoToMap() {
 		//
-		mInfo.put("SystemClock.uptimeMillis()",            "" +mSystemCurrentTimeMillis+"ms:");
+		mInfo.put("SystemClock.uptimeMillis()",            "" + mSystemCurrentTimeMillis+"ms:");
 		mInfo.put("Process.getElapsedCpuTime()",           "" + mElapsedCpuTime+"ms:");
 		mInfo.put("System.currentTimeMillis()",            "" + mSystemCurrentTimeMillis+"ms:");
-		mInfo.put("Runtime.totalMemory()",                 "" +(mDalvikMax/(1024))+"kb:" + mDalvikMax);
-		mInfo.put("Runtime.freeMemory()",                  "" +(mDalvikFree/(1024))+"kb:" +mDalvikFree);
+		mInfo.put("Runtime.totalMemory()",                 "" + (mDalvikMax/(1024))+"kb:" + mDalvikMax);
+		mInfo.put("Runtime.freeMemory()",                  "" + (mDalvikFree/(1024))+"kb:" +mDalvikFree);
 		mInfo.put("Debug.threadCpuTimeNanos()",            "" + (mThreadCpuTimeNanos/(1000*1000))+"ms:"+mThreadCpuTimeNanos);
-		mInfo.put("Debug.getNativeHeapSize()",             "" +(mNativeMax/1024)+"kb:"+ mNativeMax);
-		mInfo.put("Debug.getNativeHeapAllocatedSize()",    "" +(mNativeAllocated/1024)+"kb:"+ mNativeAllocated);
-		mInfo.put("Debug.getNativeHeapFreeSize()",         "" +(mNativeFree/1024)+"kb:"+mNativeFree);	
-		mInfo.put("Debug.getBinderSentTransactions()",     "" + mPreBinderSentTransactions);
-		mInfo.put("pre->Debug.getBinderReceivedTransactions()", "" + mPreBinderReceivedTransactions);
-		mInfo.put("pre->Debug.getBinderSentTransactions()",     "" + mBinderSentTransactions);
-		mInfo.put("Debug.getBinderReceivedTransactions()", "" + mBinderReceivedTransactions);
+		mInfo.put("Debug.getNativeHeapSize()",             "" + (mNativeMax/1024)+"kb:"+ mNativeMax);
+		mInfo.put("Debug.getNativeHeapAllocatedSize()",    "" + (mNativeAllocated/1024)+"kb:"+ mNativeAllocated);
+		mInfo.put("Debug.getNativeHeapFreeSize()",         "" + (mNativeFree/1024)+"kb:"+mNativeFree);	
+		mInfo.put("Debug.getBinderSentTransactions()",     "" + mBinderSentTransactions+":diff"+(mBinderSentTransactions-mPreBinderSentTransactions));
+		mInfo.put("Debug.getBinderReceivedTransactions()", "" + mBinderReceivedTransactions+":diff"+(mBinderReceivedTransactions-mPreBinderReceivedTransactions));
 		mInfo.put("Debug.getGlobalAllocCount()",           "" + mGlobalAllocCount);
 		mInfo.put("Debug.getGlobalFreedCount()",           "" + mGlobalFreedCount);
 		mInfo.put("Debug.getGlobalGcInvocationCount()",    "" + mGlobalGcInvocationCount);
-		mInfo.put("Debug.getGlobalAllocSize()",            "" +(mGlobalAllocSize/1024)+"kb:"+ mGlobalAllocSize);
-		mInfo.put("Debug.getGlobalFreedSize()",            "" +(mGlobalFreedSize/1024)+"kb:"+mGlobalFreedSize);
+		mInfo.put("Debug.getGlobalAllocSize()",            "" + (mGlobalAllocSize/1024)+"kb:"+ mGlobalAllocSize);
+		mInfo.put("Debug.getGlobalFreedSize()",            "" + (mGlobalFreedSize/1024)+"kb:"+mGlobalFreedSize);
 		//
 		//
 		mInfo.put("MemInfo.dalvikPss",                     "" + mMemInfo.dalvikPss+"kb:diff"+(mMemInfo.dalvikPss-mPrevMemInfo.dalvikPss));
